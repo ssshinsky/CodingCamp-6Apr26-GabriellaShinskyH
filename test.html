@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TEST DASHBOARD</title>
+  <style>
+    body { font-family: Arial; background: linear-gradient(135deg, #6b5be8, #9b6de8); color: white; padding: 30px; margin:0; }
+    h1 { text-align:center; }
+    .card { background:rgba(255,255,255,0.2); padding:20px; border-radius:20px; margin:20px 0; }
+    button { padding:10px 20px; margin:5px; border-radius:50px; border:none; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <h1>TEST DASHBOARD - Kalau ini muncul, HTML jalan</h1>
+  
+  <div class="card">
+    <h2>Jam Sekarang</h2>
+    <div id="time" style="font-size:3rem; font-weight:bold;">00:00:00</div>
+  </div>
+
+  <div class="card">
+    <h2>Test Task</h2>
+    <input id="task-input" placeholder="ketik task" style="padding:10px; width:70%;">
+    <button onclick="addTestTask()">Add Task</button>
+    <ul id="task-list"></ul>
+  </div>
+
+  <script>
+    console.log("✅ JS BERHASIL DI-LOAD!");
+
+    // Jam jalan
+    function updateTime() {
+      const now = new Date();
+      const timeStr = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')}`;
+      document.getElementById('time').textContent = timeStr;
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    // Test task
+    let tasks = [];
+    function addTestTask() {
+      const input = document.getElementById('task-input');
+      if (!input.value) return;
+      tasks.push(input.value);
+      renderTasks();
+      input.value = '';
+    }
+    function renderTasks() {
+      const list = document.getElementById('task-list');
+      list.innerHTML = tasks.map(t => `<li>✅ ${t}</li>`).join('');
+    }
+
+    alert("🎉 JS BERHASIL JALAN! Kalau alert ini muncul + jam berjalan, berarti masalahnya cuma di file terpisah.");
+  </script>
+</body>
+</html>
